@@ -12,9 +12,13 @@
     <!-- into a table -->
     <table border = "1">
     <?php foreach ($recipes as $recipe): ?>
+    <form action="?deleterecipe" method="post">
     <tr>
+    <td><?php html($recipe['recipename']); ?></td>
     <td><?php html($recipe['recipetext']); ?></td>
     <td><?php html($recipe['reciperating']); ?></td>
+    <td><input type="hidden" name="id" value="<?php echo $recipe['id'];?>">
+    <input type="submit" value="Delete"></td>
     </tr>
     <?php endforeach;?>
     </table>
