@@ -44,9 +44,15 @@ if(isset($_GET['deleterecipe'])){
 
 include 'includes/db.inc.php';
 
+// $sql = 'SELECT recipes.recipeID, recipes.name, recipes.rating, recipetext, author.name, author.email
+// FROM recipes INNER JOIN author
+// ON recipes.authorID = author.authorID';
+
 try //selection block
 {
-    $sql = 'SELECT * FROM recipes';
+    $sql = 'SELECT * FROM recipes 
+            INNER JOIN author 
+            ON recipes.authorID = author.authorID';
     $result = $pdo -> query($sql);
 } catch (PDOException $e) {
     $error = 'Error fetching recipes' . $e -> getMessage();
@@ -60,6 +66,8 @@ foreach($result as $row){
         'recipename' => $row['Name'],
         'recipetext' => $row['recipetext'],
         'reciperating' => $row['Rating'],
+        'authorname' => $row['name'],
+        'email' => $row['email']
 
     );
 }

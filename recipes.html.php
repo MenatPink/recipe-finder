@@ -19,6 +19,8 @@
     <td><?php html($recipe['reciperating']); ?></td>
     <td><input type="hidden" name="id" value="<?php echo $recipe['id'];?>">
     <input type="submit" value="Delete"></td>
+    <td>(by <a href="mailto:<?php html($recipe['email']); ?>">
+    <?php html($recipe['authorname']); ?></a>)</td>
     </tr>
     <?php endforeach;?>
     </table>
