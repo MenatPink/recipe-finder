@@ -7,7 +7,7 @@ if(isset($_GET['addrecipe'])){
 
 //insert block
 if(isset($_POST['recipetext'])){
-    include 'includes/db.inc.php';
+    include 'admin/includes/db.inc.php';
     try{
         //prepared statement
         $sql = 'INSERT INTO recipes SET
@@ -25,7 +25,7 @@ exit();
 }
 
 if(isset($_GET['deleterecipe'])){
-    include 'includes/db.inc.php';
+    include 'admin/includes/db.inc.php';
     try
     {
         $sql = 'DELETE FROM recipes WHERE recipeID = :id';
@@ -42,11 +42,7 @@ if(isset($_GET['deleterecipe'])){
     exit();
 }
 
-include 'includes/db.inc.php';
-
-// $sql = 'SELECT recipes.recipeID, recipes.name, recipes.rating, recipetext, author.name, author.email
-// FROM recipes INNER JOIN author
-// ON recipes.authorID = author.authorID';
+include 'admin/includes/db.inc.php';
 
 try //selection block
 {

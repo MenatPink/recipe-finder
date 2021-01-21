@@ -1,4 +1,4 @@
-<?php include_once 'includes/helpers.inc.html.php';?>
+<?php include_once 'admin/includes/helpers.inc.html.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +24,6 @@
     </tr>
     <?php endforeach;?>
     </table>
-    <?php include 'includes/footer.inc.html.php';?>
+    <?php include 'admin/includes/footer.inc.html.php';?>
 </body>
 </html>
