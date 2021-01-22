@@ -1,8 +1,7 @@
 <?php
 
 //new author form
-if (isset($_GET['add']))
-{
+if (isset($_GET['add'])) {
     $pageTitle = 'New Author';
     $action = 'addform';
     $name = '';
@@ -14,17 +13,16 @@ if (isset($_GET['add']))
     exit();
 }
 //insert new author
-if(isset($_GET['addform']))
-{
+if (isset($_GET['addform'])) {
     include '../includes/db.inc.php';
-    try{
+    try {
         $sql = 'INSERT INTO author SET name = :name, email = :email';
-        $s = $pdo -> prepare($sql);
-        $s -> bindvalue(':name', $_POST['name']);
-        $s -> bindvalue(':email', $_POST['email']);
-        $s -> execute();
+        $s = $pdo->prepare($sql);
+        $s->bindvalue(':name', $_POST['name']);
+        $s->bindvalue(':email', $_POST['email']);
+        $s->execute();
 
-    } catch (PDOException $e){
+    } catch (PDOException $e) {
         $error = 'Error adding submitted author.';
         include 'error.html.php';
         exit();
@@ -33,23 +31,22 @@ if(isset($_GET['addform']))
     exit();
 }
 //edit authors
-if(isset($_POST['action']) and $_POST['action'] == 'Edit')
-{
+if (isset($_POST['action']) and $_POST['action'] == 'Edit') {
     include '../includes/db.inc.php';
 
     try
     {
-    $sql = 'SELECT authorID, name, email FROM author WHERE authorID = :id';
-    $s = $pdo->prepare($sql);
-    $s->bindvalue(':id', $_POST['id']);
-    $s->execute();
-    } catch (PDOException $e){
+        $sql = 'SELECT authorID, name, email FROM author WHERE authorID = :id';
+        $s = $pdo->prepare($sql);
+        $s->bindvalue(':id', $_POST['id']);
+        $s->execute();
+    } catch (PDOException $e) {
         $error = 'Error fetching author details.';
         include 'error.html.php';
         exit();
     }
 //populate form
-$row = $s -> fetch();
+    $row = $s->fetch();
 
     $pageTitle = 'Edit Author';
     $action = 'editform';
@@ -58,17 +55,16 @@ $row = $s -> fetch();
     $id = $row['authorID'];
     $button = 'update Author';
 
-include 'form.html.php';
-exit();
+    include 'form.html.php';
+    exit();
 }
 
 //update the authors details
-if(isset($_GET['editform']))
-{
+if (isset($_GET['editform'])) {
     include '../includes/db.inc.php';
     try
     {
-        $sql = 'UPDATE author SET
+        $sql = 'UPDE author SET
         name = :name,
         email = :email
         WHERE authorID = :id';
@@ -77,9 +73,7 @@ if(isset($_GET['editform']))
         $s->bindvalue(':name', $_POST['name']);
         $s->bindvalue(':email', $_POST['email']);
         $s->execute();
-    }
-    catch(PDOException $e)
-    {
+    } catch (PDOException $e) {
         $error = 'Error updating submitted author.';
         include 'error.html.php';
         exit();
@@ -88,57 +82,65 @@ if(isset($_GET['editform']))
     exit();
 }
 
-//delete author, his jokes and link table date
+//delete confirm, ask if certain?
+if (isset($_POST['action']) and $_POST['action'] == 'Delete') {
 
-if(isset($_POST['action']) and $_POST['action'] == 'Yesgit add')
-{
+    include '../includes/db.inc.php';
 
-    include '../includes/db.inc.php';    
-
-try{
-    $sql = 'DELETE FROM author WHERE authorID = :id';
-    $s = $pdo -> prepare($sql);
-    $s -> bindValue(':id', $_POST['id']);
-    $s -> execute();
+    try {
+        $sql = 'SELECT authorID, name FROM author WHERE authorID = :id';
+        $s = $pdo->prepare($sql);
+        $s->bindValue(':id', $_POST['id']);
+        $s->execute();
     } catch (PDOException $e) {
-        $error = 'Error deleting author.';
+        $error = 'Error fetching author from the data.';
         include 'error.html.php';
         exit();
     }
     //Fetch the author row from the sent id
     $row = $s->fetch();
 
-        $name = $row['name'];
-        $id = $row['authorID'];
+    $name = $row['name'];
+    $id = $row['authorID'];
 
     include 'confirm_delete.html.php';
     exit();
 }
 
-//list all authors
+if (isset($_POST['action']) and $_POST['action'] == 'Yes') {
+    include '../includes/db.inc.php';
+    try {
+        $sql = 'DELETE FROM author WHERE authorID = :id';
+        $s = $pdo->prepare($sql);
+        $s->bindvalue(':id', $_POST['id']);
+        $s->execute();
+    } catch (PDOException $e) {
+        $error = 'Error deleting author.';
+        include 'error.html.php';
+        exit();
+    }
+    header('Location: .');
+    exit();
+}
 
+//list all authors
 include '../includes/db.inc.php';
 
-try{
+try {
     $sql = 'SELECT * FROM author';
-    $result = $pdo -> query($sql);
-} 
-catch (PDOException $e){
-    $error = 'Error fetching authors from the database' . $e -> getMessage();
+    $result = $pdo->query($sql);
+} catch (PDOException $e) {
+    $error = 'Error fetching authors from the database' . $e->getMessage();
     include 'error.html.php';
     exit();
 }
 
-foreach($result as $row){
+foreach ($result as $row) {
     $authors[] = array(
-            'id' => $row['authorID'],
-            'authorname' => $row['name'],
-            'email' => $row['email']
-        );
+        'id' => $row['authorID'],
+        'authorname' => $row['name'],
+        'email' => $row['email'],
+    );
 }
 
 include 'authors.html.php';
-
-
-
-?>
