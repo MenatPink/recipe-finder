@@ -8,22 +8,33 @@
 </head>
 <body>
 <!-- <p><a href="?addrecipe">Add your own recipe</a></p> -->
-    <p>Here are all the recipes in the database</p>
+    <p>Here are five random recipes from the database</p>
     <!-- into a table -->
     <table border = "1">
     <?php foreach ($recipes as $recipe): ?>
-    <form action="?deleterecipe" method="post">
-    <tr>
-    <td><?php html($recipe['recipename']); ?></td>
-    <td><?php html($recipe['recipetext']); ?></td>
+        <tr>
+            <td><?php html($recipe['recipename']); ?></td>
+            <td><?php html($recipe['recipetext']); ?></td>
+            <td>
+                <img 
+                src= '<?php html($recipe['image'])?>'
+                alt='Image of <?php html($recipe['recipename']) ?>'>
+                
+            </td>
     <td><?php html($recipe['reciperating']); ?></td>
-    <td><input type="hidden" name="id" value="<?php echo $recipe['id'];?>">
-    <input type="submit" value="Delete"></td>
-    <td>(by <a href="mailto:<?php html($recipe['email']); ?>">
-    <?php html($recipe['authorname']); ?></a>)</td>
+    <td>
+        <input type="hidden" name="id" value="<?php echo $recipe['id'];?>">
+    (by 
+    <a href="mailto:<?php html($recipe['email']); ?>">
+    <?php html($recipe['authorname']); ?></a>)
+</td>
     </tr>
     <?php endforeach;?>
     </table>
-    <?php include 'admin/includes/footer.inc.html.php';?>
+    <button>
+        <a href="contact.html.php">
+            Contact
+    </a>
+    </button>
 </body>
 </html>

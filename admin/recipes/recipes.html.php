@@ -8,18 +8,20 @@
 <body>
     <h1>Search Results</h1>
     <?php if(isset($recipes)): ?>
-    <table>
+    <table border = "1px">
         <tr>
+            <th>Recipe Name</th>
             <th>Recipe Text</th>
             <th>Options</th>
         </tr>
         <?php foreach ($recipes as $recipe): ?>
         <tr>
+            <td><?php html($recipe['name']); ?></td>
             <td><?php html($recipe['text']); ?></td>
             <td>
                 <form action="?" method="post">
                     <input type="hidden" name="id" value="<?php echo $recipe['id']; ?>">
-                    <input type="submit" name="action" value="Edit">
+                    <!-- <input type="submit" name="action" value="Edit"> -->
                     <input type="submit" name="action" value="Delete">
                 </form>
             </td>

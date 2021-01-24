@@ -14,6 +14,6 @@ try
     exit();
 }
 
-echo 'Database connection is established';
+// echo 'Database connection is established';
 
 ?>
