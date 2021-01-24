@@ -1,5 +1,7 @@
 <?php 
 
+/******************************************************************************/
+
 //insert block
 if(isset($_POST['recipetext'])){
     include 'admin/includes/db.inc.php';
@@ -44,7 +46,7 @@ include 'admin/includes/db.inc.php';
         $sql = 'SELECT * FROM recipes 
                 INNER JOIN author 
                 ON recipes.authorID = author.authorID
-                ORDER BY rand() LIMIT 5';
+                ORDER BY rand() LIMIT 2';
         $result = $pdo -> query($sql);
     } catch (PDOException $e) {
         $error = 'Error fetching recipes' . $e -> getMessage();
