@@ -1,5 +1,7 @@
 <?php
 
+include_once '../includes/helpers.inc.html.php';
+
 //New category form
 if (isset($_GET['add']))
 {
@@ -71,7 +73,7 @@ if(isset($_GET['editform']))
         WHERE categoryID = :id';
         $s = $pdo->prepare($sql);
         $s->bindvalue(':id', $_POST['id']);
-        $s->bindvalue(':name', $_POST['name']);
+        $s->bindvalue(':name', filter($_POST['name']));
         $s->execute();
     } catch(PDOException $e){
         $error = 'Error updating submitted category';

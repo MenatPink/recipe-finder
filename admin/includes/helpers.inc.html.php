@@ -4,6 +4,6 @@ function html($text)
     echo $out = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
 }
 
-function filter($form_field) {  
-    return preg_replace('/!/<>^$*&]+/','',$form_field);
-    }
+function filter($string){
+    return str_replace(str_split('\\/:*?"<>|!&@'), '', $string);
+}
