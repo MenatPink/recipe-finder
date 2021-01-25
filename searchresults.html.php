@@ -4,7 +4,7 @@
     <table class = "mx-auto mt-5">
         <tr>
             <th class = "text-center">Recipe Name</th>
-            <th class = "text-center">Recipe Text</th>
+            <th class = "text-center">Recipe Instructions</th>
         </tr>
         <?php foreach ($searchresults as $searchresult): ?>
         <tr>

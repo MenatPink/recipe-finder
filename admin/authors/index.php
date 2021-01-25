@@ -64,7 +64,7 @@ if (isset($_GET['editform'])) {
     include '../includes/db.inc.php';
     try
     {
-        $sql = 'UPDE author SET
+        $sql = 'UPDATE author SET
         name = :name,
         email = :email
         WHERE authorID = :id';
@@ -74,7 +74,7 @@ if (isset($_GET['editform'])) {
         $s->bindvalue(':email', $_POST['email']);
         $s->execute();
     } catch (PDOException $e) {
-        $error = 'Error updating submitted author.';
+        $error = 'Error updating submitted author.' . $e -> getMessage();
         include 'error.html.php';
         exit();
     }

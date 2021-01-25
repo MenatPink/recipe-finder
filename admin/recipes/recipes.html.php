@@ -1,4 +1,8 @@
-<?php include_once '../includes/helpers.inc.html.php'; ?>
+<?php 
+include_once '../includes/helpers.inc.html.php';
+include_once '../includes/header.html.php'
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,14 +10,16 @@
     <title>Manage Recipes: Search Results</title>
 </head>
 <body>
-    <h1>Search Results</h1>
+    <h1 class = "text-center mt-5">Search Results</h1>
     <?php if(isset($recipes)): ?>
-    <table border = "1px">
-        <tr>
-            <th>Recipe Name</th>
-            <th>Recipe Text</th>
-            <th>Options</th>
-        </tr>
+    <table class = "table">
+        <thead>
+            <tr>
+                <th>Recipe Name</th>
+                <th>Recipe Text</th>
+                <th>Options</th>
+            </tr>
+        </thead>
         <?php foreach ($recipes as $recipe): ?>
         <tr>
             <td><?php html($recipe['name']); ?></td>
@@ -22,14 +28,14 @@
                 <form action="?" method="post">
                     <input type="hidden" name="id" value="<?php echo $recipe['id']; ?>">
                     <!-- <input type="submit" name="action" value="Edit"> -->
-                    <input type="submit" name="action" value="Delete">
+                    <input class = "btn btn-primary" type="submit" name="action" value="Delete">
                 </form>
             </td>
         </tr>
 <?php endforeach;?>
     </table>
         <?php endif; ?>
-        <p><a href="?">New search</a></p>
-        <p><a href="..">Return CMS home</a></p>
+        <p class = "d-flex justify-content-center"><a class = "btn btn-primary" href="?">New search</a></p>
+        <p class = "d-flex justify-content-center"><a class = "btn btn-primary" href="..">Return CMS home</a></p>
 </body>
 </html>

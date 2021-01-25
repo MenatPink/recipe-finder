@@ -10,7 +10,7 @@
     <title>Menat's Recipes</title>
 </head>
 <body>
-<h1 class = "recipeTitle">The Best Recipes of 2021</h1>
+<h1 class = "text-center recipeTitle"><b>The Best Recipes of 2021</b></h1>
     
 </body>
 </html>

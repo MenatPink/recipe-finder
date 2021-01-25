@@ -1,4 +1,7 @@
-<?php include_once '../includes/helpers.inc.html.php';?>
+<?php 
+include_once '../includes/helpers.inc.html.php';
+include_once '../includes/header.html.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +10,11 @@
     <title>Manage Recipes</title>
 </head>
 <body>
-    <h1>Manage Recipes</h1>
-    <p><a href="?add">Add new recipe</a></p>
+    <h1 class = "text-center mt-5">Manage Recipes</h1>
+    <p class = "text-center"><a class = "btn btn-primary" href="?add">Add new recipe</a></p>
     <form action="" method="get">
-        <p>View Recipes satisfying the following criteria</p>
-        <div>
+        <p class = "text-center">View Recipes satisfying the following criteria:</p>
+        <div class = "d-flex mt-5 justify-content-center">
             <label for="author">By author:</label>
             <select name="author" id="author">
                 <option value="">Any author</option>
@@ -20,7 +23,7 @@
                 <?php endforeach;?>
                 </select>
         </div>
-        <div>
+        <div class = "d-flex justify-content-center mt-5">
             <label for="category">By category:</label>
             <select name="category" id="category">
                 <option value="">Any category</option>
@@ -29,14 +32,14 @@
                 <?php endforeach;?>
             </select>
         </div>
-        <div>
+        <div class = "d-flex justify-content-center mt-5">
             <label for="text">Containing text:</label>
             <input type="text" name="text" id="text">
         </div>
-        <div>
-            <input type="submit" name="action" value="search">
+        <div class = "d-flex justify-content-center mt-5">
+            <input class = "btn btn-primary" type="submit" name="action" value="search">
         </div>
                 </form>
-                <p><a href="..">Return to CMS</a></p>
+                <p class = "d-flex justify-content-center mt-5"><a class = "btn btn-primary" href="..">Return to CMS</a></p>
 </body>
 </html>

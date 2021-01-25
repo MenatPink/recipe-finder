@@ -1,11 +1,11 @@
 <?php include_once 'admin/includes/helpers.inc.html.php';?>
 <?php include_once 'admin/includes/header.html.php';?>
 <!-- <p><a href="?addrecipe">Add your own recipe</a></p> -->
-    <p class = "text-center">Here are our latest reipes, at random!</p>
+    <p class = "text-center">Here are our latest recipes, at random!</p>
 <div class="container">
 <div class="row justify-content-center">
 <?php foreach ($recipes as $recipe): ?>
-<div class="col-6 top-buffer">
+<div class="col-md-6 col-sm-12 top-buffer">
 <div class="card text-center mx-auto" style="width: 18rem;">
   <img src="<?php html($recipe['image'])?>" class="card-img-top" alt="...">
   <div class="card-body">

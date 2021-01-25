@@ -1,5 +1,5 @@
 <?php 
-
+include_once 'admin/includes/helpers.inc.html.php';
 /******************************************************************************/
 
 //insert block

@@ -5,5 +5,5 @@ function html($text)
 }
 
 function filter($form_field) {  
-    return preg_replace('/[nr|!/<>^$%*&]+/','',$form_field);
+    return preg_replace('/!/<>^$*&]+/','',$form_field);
     }
