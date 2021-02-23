@@ -22,5 +22,6 @@
   <?php endforeach;?>
 </div>
 </div>
+<?php include_once 'admin/includes/footer.inc.html.php' ?>
 </body>
 </html>

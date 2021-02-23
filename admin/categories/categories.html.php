@@ -26,5 +26,6 @@ include_once '../includes/header.html.php'
 <?php endforeach; ?>
 </table>
 <p class = "d-flex justify-content-center mt-5"><a class = "btn btn-primary" href="..">Return to CMS home</a></p>
+<?php include '../logout.inc.html.php' ?>
 </body>
 </html>

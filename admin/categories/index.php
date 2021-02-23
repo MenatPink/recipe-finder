@@ -1,8 +1,22 @@
 <?php
 
-include_once '../includes/helpers.inc.html.php';
+require_once '../includes/access.inc.php';
+
+if(!userIsLoggedIn()){
+    include '../login.html.php';
+    exit();
+}
+
+if (!userHasRole('Site Administrator'))
+{
+    $error = 'Only Site Administrators may access this page.';
+    include '../accessdenied.html.php';
+    exit();
+}
 
 //New category form
+include_once '../includes/helpers.inc.html.php';
+
 if (isset($_GET['add']))
 {
     $pageTitle = 'New Category';

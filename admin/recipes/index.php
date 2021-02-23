@@ -1,6 +1,18 @@
 <?php 
 
-//error_reporting(0);
+require_once '../includes/access.inc.php';
+
+if(!userIsLoggedIn()){
+    include '../login.html.php';
+    exit();
+}
+
+if (!userHasRole('Content Editor'))
+{
+    $error = 'Only Content Editor may access this page.';
+    include '../accessdenied.html.php';
+    exit();
+}
 
 /***********************************************/
 //add new joke link has been clicked

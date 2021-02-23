@@ -1,7 +1,21 @@
 <?php
-include_once('../includes/helpers.inc.html.php');
+require_once '../includes/access.inc.php';
+
+if(!userIsLoggedIn()){
+    include '../login.html.php';
+    exit();
+}
+
+if (!userHasRole('Account Administrator'))
+{
+    $error = 'Only Account Administrators may access this page.';
+    include '../accessdenied.html.php';
+    exit();
+}
 
 //new author form
+include_once('../includes/helpers.inc.html.php');
+
 if (isset($_GET['add'])) {
     $pageTitle = 'New Author';
     $action = 'addform';

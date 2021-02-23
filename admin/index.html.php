@@ -8,7 +8,7 @@
 <body>
     <h1>Recipe Management System</h1>
     <ul>
-        <li><a href="recipes/index.php==">Manage Recipes</a></li>
+        <li><a href="recipes/index.php">Manage Recipes</a></li>
         <li><a href="authors/">Manage Authors</a></li>
         <li><a href="categories/">Manage Recipe Categories</a></li>
     </ul>
