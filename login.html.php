@@ -11,7 +11,6 @@
 </head>
 <body>
   <?php include_once 'admin/includes/helpers.inc.html.php';?>
-  <?php //include_once 'admin/includes/header.html.php';?>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbarsExampleDefault">
     <div class = "container-fluid">
       <a class = "navbar-brand" href="#">Your Recipes</a>
@@ -24,7 +23,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href='user/index.php'>Login</a>
+            <a class="nav-link" href='login.html.php'>Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href='reg/'>Register</a>
@@ -37,29 +36,24 @@
       </div>
     </div>
   </nav>
-  <h1 class = "text-center recipeTitle"><b>The Best Recipes of 2021</b></h1>
-
-    <p class = "text-center">Here are ours latest recipes, at random!</p>
-<div class="container">
-<div class="row justify-content-center">
-<?php foreach ($recipes as $recipe): ?>
-<div class="col-md-6 col-sm-12 top-buffer">
-<div class="card text-center mx-auto" style="width: 18rem;">
-  <img src="<?php html($recipe['image'])?>" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><?php html($recipe['recipename']);?></h5>
-    <p class="card-text"><?php html($recipe['recipetext']);?></p>
-    <p class="card-text"><?php html($recipe['reciperating']);?></p>
-    <p class="card-text"> <input type="hidden" name="id" value="<?php echo $recipe['id']; ?>">
-    (by
-    <a href="mailto:<?php html($recipe['email']);?>">
-    <?php html($recipe['authorname']);?></a>)</p>
-  </div>
-</div>
-</div>
-  <?php endforeach;?>
-</div>
-</div>
-<?php include_once 'admin/includes/footer.inc.html.php'?>
+  
+    <h1>Log In</h1>
+    <p>Please log in to view the page that your requested.</p>
+    <?php if (isset($loginError)): ?>
+        <p><?php echo($loginError); ?></p>
+        <?php endif; ?>
+        <form action="" method="post">
+            <div>
+                <label for="email">Email: <input type="text" name="email" id="email"></label>
+            </div>
+            <div>
+                <label for="password">Password: <input type="password" name="password" id="password"></label>
+            </div>
+            <div>
+                <input type="hidden" name="action" value="login">
+                <input type="submit" value="Log in">
+            </div>
+        </form>
+        <p><a href="..">Return to CMS home</a></p>
 </body>
 </html>

@@ -10,7 +10,7 @@
     <h1>Confirm Delete?</h1>
     <form action="" method="post">
         <div>
-            Do you really want to delete: <b><?php html($name); ?></b> and all of his jokes?
+            Do you really want to delete: <b><?php html($name); ?></b> and all of his recipes?
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <input type="submit" name="action" value="Yes">
             <input type="submit" name="action" value="No">

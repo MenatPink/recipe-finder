@@ -102,3 +102,22 @@ function userHasRole($role)
     return FALSE;
   }
 }
+function customer(){
+  include 'db.inc.php';
+  try{
+    $sql = "SELECT authorID FROM author
+            WHERE email = :email
+            AND password = :password";
+    $s = $pdo -> prepare($sql);
+    $s -> bindValue(':email', $_SESSION['email']);
+    $s -> bindValue(':password', $_SESSION['password']);
+    $s->execute();
+  }catch(PDOException $e){
+    $error = 'Error selecting customer';
+    include 'error.html.php';
+    exit();
+  }
+  $row = $s->fetch();
+  $_SESSION['aid'] = $row['authorID'];
+  // printf($_SESSION['aid']);
+}
