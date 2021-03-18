@@ -60,6 +60,9 @@
   <?php endforeach;?>
 </div>
 </div>
+<div>
+<p><a href="#">Edit Your recipes</a></p>
+</div>
 <?php include_once 'admin/includes/footer.inc.html.php'?>
 </body>
 </html>

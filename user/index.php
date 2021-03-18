@@ -6,7 +6,7 @@ if(!userIsLoggedIn()){
     include '../login.html.php';
     exit();
 }
-
+customer();
 if (!userHasRole('User'))
 {
     $error = 'Only User may access this page.';
