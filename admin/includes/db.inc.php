@@ -14,6 +14,8 @@ try
     exit();
 }
 
+date_default_timezone_set('Europe/London')
+
 // echo 'Database connection is established';
 
 ?>

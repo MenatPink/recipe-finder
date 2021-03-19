@@ -38,5 +38,6 @@ include_once '../admin/includes/helpers.inc.html.php';
         </div>
                 </form>
                 <p class = "d-flex justify-content-center mt-5"><a class = "btn btn-primary" href="..">Return to CMS</a></p>
+                <?php include '../logout.inc.html.php' ?>
 </body>
 </html>

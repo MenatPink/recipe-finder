@@ -53,6 +53,11 @@
                 <input type="hidden" name="action" value="login">
                 <input type="submit" value="Log in">
             </div>
+            <div>
+            <button class="btn btn-outline-success" type="submit">
+            <a href="../forgottenpassword/">Forgotten Password?</a>
+            </button>
+            </div>
         </form>
         <p><a href="..">Return to CMS home</a></p>
 </body>

@@ -39,5 +39,6 @@
         <input type="submit" value="<?php html($button); ?>">
       </div>
     </form>
+    <?php include '../logout.inc.html.php' ?>
   </body>
 </html>

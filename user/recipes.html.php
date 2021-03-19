@@ -36,6 +36,6 @@ include_once '../admin/includes/header.html.php';
         <?php endif; ?>
         <p class = "d-flex justify-content-center"><a class = "btn btn-primary" href="?">New search</a></p>
         <p class = "d-flex justify-content-center"><a class = "btn btn-primary" href="..">Return CMS home</a></p>
-        <?php include '../logout.inc.html.php' ?>
+        <?php include 'logout.inc.html.php' ?>
 </body>
 </html>
