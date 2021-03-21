@@ -55,7 +55,7 @@
             </div>
             <div>
             <button class="btn btn-outline-success" type="submit">
-            <a href="../forgottenpassword/">Forgotten Password?</a>
+            <a href="./forgottenpassword/">Forgotten Password?</a>
             </button>
             </div>
         </form>

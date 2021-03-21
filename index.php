@@ -1,6 +1,19 @@
 <?php 
 include_once 'admin/includes/helpers.inc.html.php';
+
+
+//Check if the user came with a Password Successfully Updated
+
+if(isset($_GET["newpwd"])){
+    if ($_GET["newpwd"] == "passwordupdated") {
+        echo '<p class="passwordChangedSuccess">Your password has been reset!</p>';
+    }
+}
+
+
+
 /******************************************************************************/
+
 
 //insert block
 if(isset($_POST['recipetext'])){

@@ -1,91 +1,113 @@
 <?php
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+require '../vendor/phpmailer/phpmailer/src/Exception.php';
+require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require '../vendor/phpmailer/phpmailer/src/SMTP.php';
 include '../admin/includes/db.inc.php';
+
+require '../vendor/autoload.php';
+
+if (isset($_POST["reset-request-submit"])){
+
+   $selector = bin2hex(random_bytes(8));
+   $token = random_bytes(32);
+
+   $url = "http://localhost:8080/recipes2/forgottenpassword/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
+
+    $expires = date("U") + 1800;
+
+   require '../admin/includes/db.inc.php';
+// Fetch the email input from the user form
+   $userEmail = $_POST["email"];
+// Delete any leftover tokens in the database
+   $sql = "DELETE FROM pwdreset WHERE pwdResetEmail=?";
+   //Prepare the sql statement 
+   $stmt = mysqli_stmt_init($con);
+if (!mysqli_stmt_prepare($stmt, $sql)){
+   //Print out any error
+   echo "There was an error: " . mysqli_error($con);
+   exit();
+} else {
+   //Replace any 
+   mysqli_stmt_bind_param($stmt, "s", $userEmail);
+   mysqli_stmt_execute($stmt);
+}
+
+$sql = "INSERT INTO pwdreset (pwdResetEmail, pwdResetSelector, pwdResetToken, pwdResetExpires) VALUES (?, ?, ?, ?)";
+//Prepare the sql statement 
+$stmt = mysqli_stmt_init($con);
+if (!mysqli_stmt_prepare($stmt, $sql)){
+   //Print out any error
+   echo "There was an error!";
+   exit();
+} else {
+   //Hash sensitive data
+   $hashedToken = password_hash($token, PASSWORD_DEFAULT);
+   //Replace any 
+   mysqli_stmt_bind_param($stmt, "ssss", $userEmail, $selector, $hashedToken, $expires);
+   mysqli_stmt_execute($stmt);
+}
+
+mysqli_stmt_close($stmt);
+mysqli_close($con);
+
+// Writing out E-mail Content
+   //Who the email is being sent to
+      $to = $userEmail;
+   //Subject Email
+      $subject = 'Reset your password for my recipes';
+   //Email Body Message
+      $message = '<p>We recieved a password reset request.
+      The link to reset your password is here. If you did not make this request, you can ignore this
+      email</p>';
+      $message .= '<p>Here is your password reset link: </br>';
+      $message .= '<a href="' . $url . '">' . $url . '</a></p>';
+
+      // $headers = "From MyRecipes <noreply@myrecipes.com\r\n";
+      // $headers .= "Content-type: text/html\r\n";
+
+
+      $mail = new PHPMailer();
+
+      try{
+         //Server settings
+         // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+         $mail->isSMTP();                                            //Send using SMTP
+         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+         $mail->Username   = 'menatpink@gmail.com';                     //SMTP username
+         $mail->Password   = 'P#sswordp1nk';                               //SMTP password
+         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+         $mail->Port       = 587;  
+     
+         //Recipients
+         $mail->setFrom('no-reply@myrecipes.com', 'Mailer');
+         $mail->addAddress($to);
+     
+          //Content
+         $mail->isHTML(true);                                  //Set email format to HTML
+         $mail->Subject = $subject;
+         $mail->Body    = $message;
+         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+     
+         $mail->send();
+         echo 'Message has been sent';
+     } catch(Exception $e){
+         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+     };
+
+     header("Location ../passwordreset.html.php?reset=success");
+
+} else {
+
+}
+
+
 include 'passwordreset.html.php';
-
-if(isset($_POST["email"]) && (!empty($_POST["email"]))){
-$email = $_POST["email"];
-$email = filter_var($email, FILTER_SANITIZE_EMAIL);
-$email = filter_var($email, FILTER_VALIDATE_EMAIL);
-if (!$email) {
-   $error .="<p>Invalid email address please type a valid email address!</p>";
-   }else{
-   $sel_query = "SELECT * FROM `users` WHERE email='".$email."'";
-   $results = mysqli_query($con,$sel_query);
-   $row = mysqli_num_rows($results);
-   if ($row==""){
-   $error .= "<p>No user is registered with this email address!</p>";
-   }
-  }
-   if($error!=""){
-   echo "<div class='error'>".$error."</div>
-   <br /><a href='javascript:history.go(-1)'>Go Back</a>";
-   }else{
-   $expFormat = mktime(
-   date("H"), date("i"), date("s"), date("m") ,date("d")+1, date("Y")
-   );
-   $expDate = date("Y-m-d H:i:s",$expFormat);
-   $key = md5(2418*2+$email);
-   $addKey = substr(md5(uniqid(rand(),1)),3,10);
-   $key = $key . $addKey;
-// Insert Temp Table
-mysqli_query($con,
-"INSERT INTO `password_reset_temp` (`email`, `key`, `expDate`)
-VALUES ('".$email."', '".$key."', '".$expDate."');");
- 
-$output='<p>Dear user,</p>';
-$output.='<p>Please click on the following link to reset your password.</p>';
-$output.='<p>-------------------------------------------------------------</p>';
-$output.='<p><a href="https://www.allphptricks.com/forgot-password/reset-password.php?
-key='.$key.'&email='.$email.'&action=reset" target="_blank">
-https://www.allphptricks.com/forgot-password/reset-password.php
-?key='.$key.'&email='.$email.'&action=reset</a></p>'; 
-$output.='<p>-------------------------------------------------------------</p>';
-$output.='<p>Please be sure to copy the entire link into your browser.
-The link will expire after 1 day for security reason.</p>';
-$output.='<p>If you did not request this forgotten password email, no action 
-is needed, your password will not be reset. However, you may want to log into 
-your account and change your security password as someone may have guessed it.</p>';   
-$output.='<p>Thanks,</p>';
-$output.='<p>AllPHPTricks Team</p>';
-$body = $output; 
-$subject = "Password Recovery - AllPHPTricks.com";
- 
-$email_to = $email;
-$fromserver = "noreply@yourwebsite.com"; 
-require("PHPMailer/PHPMailerAutoload.php");
-$mail = new PHPMailer();
-$mail->IsSMTP();
-$mail->Host = "mail.yourwebsite.com"; // Enter your host here
-$mail->SMTPAuth = true;
-$mail->Username = "noreply@yourwebsite.com"; // Enter your email here
-$mail->Password = "password"; //Enter your password here
-$mail->Port = 25;
-$mail->IsHTML(true);
-$mail->From = "noreply@yourwebsite.com";
-$mail->FromName = "AllPHPTricks";
-$mail->Sender = $fromserver; // indicates ReturnPath header
-$mail->Subject = $subject;
-$mail->Body = $body;
-$mail->AddAddress($email_to);
-if(!$mail->Send()){
-echo "Mailer Error: " . $mail->ErrorInfo;
-}else{
-echo "<div class='error'>
-<p>An email has been sent to you with instructions on how to reset your password.</p>
-</div><br /><br /><br />";
- }
-   }
-}else{
-?>
-<form method="post" action="" name="reset"><br /><br />
-<label><strong>Enter Your Email Address:</strong></label><br /><br />
-<input type="email" name="email" placeholder="username@email.com" />
-<br /><br />
-<input type="submit" value="Reset Password"/>
-</form>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<?php } 
-
-?>
