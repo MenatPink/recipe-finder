@@ -80,7 +80,7 @@ include 'admin/includes/db.inc.php';
         );
     }
     
-    include 'recipes.html.php';
+      include_once "./recipes.html.php";
 
 
 /******************************************************************************/

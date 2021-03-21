@@ -1,5 +1,5 @@
 <body>
-    <h1 class="text-center">More Search Results</h1>
+    <h1 class="text-center">Search Results</h1>
     <?php if(isset($searchresults)): ?>
     <table class = "mx-auto mt-5">
         <tr>

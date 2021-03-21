@@ -3,7 +3,8 @@ error_reporting(0);
 require_once '../admin/includes/access.inc.php';
 
 if(!userIsLoggedIn()){
-    include '../login.html.php';
+    // header("location: ../login.html.php");
+    include '../login/login.html.php';
     exit();
 }
 customer();

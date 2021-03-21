@@ -24,15 +24,15 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href='user/index.php'>Login</a>
+            <a class="nav-link" href='user/'>Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href='reg/'>Register</a>
           </li>
         </ul>
         <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="text" name="text" id="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" name="action" value="search" type="submit">Search</button>
       </form>
       </div>
     </div>
@@ -61,10 +61,15 @@
 </div>
 </div>
 <div>
-<p>
-  <a href="./user/">Edit Your recipes</a>
+<p class = "text-center">
+  <a href="./user/">Login to edit Your very own recipes</a>
 </p>
 </div>
-<?php include_once 'admin/includes/footer.inc.html.php'?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script
+			  src="https://code.jquery.com/jquery-3.6.0.min.js"
+			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			  crossorigin="anonymous"></script>
+<script src = "./admin/app/app.js"></script>
 </body>
 </html>
