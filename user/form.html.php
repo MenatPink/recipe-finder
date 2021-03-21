@@ -8,6 +8,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,600&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <link rel="stylesheet" href="styles/main.css">
+        <script src="https://cdn.tiny.cloud/1/mxvzhwwvmr21amtk7ia2cvdod8eu0qff7h7evsa269595aej/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <title>Menat's Recipes</title>
     </head>
 <body>
@@ -39,6 +40,16 @@
         <input type="submit" value="<?php html($button); ?>">
       </div>
     </form>
+    <script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+      toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+   });
+  </script>
     <?php include '../logout.inc.html.php' ?>
   </body>
 </html>

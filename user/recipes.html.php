@@ -21,8 +21,8 @@ include_once '../admin/includes/header.html.php';
         </thead>
         <?php foreach ($recipes as $recipe): ?>
         <tr>
-            <td><?php html($recipe['name']); ?></td>
-            <td><?php html($recipe['text']); ?></td>
+            <td><?php echo $recipe['name']; ?></td>
+            <td><?php echo $recipe['text']; ?></td>
             <td>
                 <form action="?" method="post">
                     <input type="hidden" name="id" value="<?php echo $recipe['id']; ?>">

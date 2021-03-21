@@ -1,5 +1,5 @@
 <?php 
-
+error_reporting(0);
 require_once '../admin/includes/access.inc.php';
 
 if(!userIsLoggedIn()){
@@ -94,15 +94,20 @@ if (isset($_GET['addform']))
         exit();
     }
 
-	try{
+try{
+    require_once '../admin/includes/HTMLPurifier.standalone.php';
+        $purifier = new HTMLPurifier();
+        $cleanName = $purifier->purify($_POST['name']);
+        $cleanText = $purifier->purify($_POST['text']);
+
 		$sql = 'INSERT INTO recipes SET
         name = :recipename,
 		recipetext = :recipetext,
         authorID = :authorid,
         categoryID = :categoryid';
         $s = $pdo->prepare($sql);
-        $s->bindValue(':recipename', $_POST['name']);
-		$s->bindValue(':recipetext', $_POST['text']);
+        $s->bindValue(':recipename', $cleanName);
+		$s->bindValue(':recipetext', $cleanText);
         $s->bindValue(':authorid', $_POST['author']);
         $s->bindValue('categoryid', $categoryid);
 		$s->execute();
