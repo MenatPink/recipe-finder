@@ -1,20 +1,22 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
-h1 {
-  font-family: "Montserrat", sans-serif;
+@use 'color-pallette';
+
+h1{
+    font-family: 'Montserrat', sans-serif;
+}
+.recipeTitle{
+    text-align: center;
+    margin-top:30px;
+    margin-bottom:30px;
+    font-weight:bold;
 }
 
-.recipeTitle {
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  font-weight: bold;
-}
 
-.top-buffer {
-  margin-top: 40px;
-}
+.top-buffer { margin-top:40px; }
 
 /* Client Side Error Validation Styles */
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
 /* Styles */
 * {
   margin: 0;
@@ -24,7 +26,7 @@ h1 {
 body {
   font-family: "Open Sans";
   font-size: 14px;
-  background-color: #FF6663;
+  background-color: color-pallette.$orange;
 }
 
 .container {
@@ -40,7 +42,6 @@ body {
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
-
 .reg-form label,
 .reg-form input,
 .reg-form button {
@@ -49,7 +50,6 @@ body {
   display: block;
   width: 100%;
 }
-
 .reg-form input {
   height: 25px;
   line-height: 25px;
@@ -60,7 +60,6 @@ body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-
 .reg-form button {
   height: 30px;
   line-height: 30px;
@@ -69,11 +68,9 @@ body {
   margin-top: 10px;
   cursor: pointer;
 }
-
 .reg-form .error {
   color: #ff0000;
 }
 
 /* Client Side Error Validation Styles End */
 
-/*# sourceMappingURL=main.css.map */

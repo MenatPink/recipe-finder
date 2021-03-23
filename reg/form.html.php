@@ -25,7 +25,7 @@
   </nav>
     <h1 class="text-center mt-4">Register</h1>
     <div class="container">
-        <form name="registration" action="?addform" method="post">
+        <form class="reg-form" name="registration" action="?addform" method="post">
         <div class = "mb-3">
             <label class = "form-label" for="name">Name:</label>
             <input type="text" class="form-control" name="name">
