@@ -91,7 +91,7 @@ if (!mysqli_stmt_prepare($stmt, "SELECT * FROM pwdreset WHERE pwdResetSelector =
           //Replace any 
           mysqli_stmt_bind_param($stmt, "s", $userEmail);
           mysqli_stmt_execute($stmt);
-          header("Location: ../login.html.php?newpwd=passwordupdated");
+          header("Location: ../user/index.php?passwordupdated");
        }
         }
        }

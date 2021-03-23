@@ -15,7 +15,7 @@ include_once '../admin/includes/helpers.inc.html.php';
         <title>Menat's Recipes</title>
     </head>
 <body>
-    <h1 class = "text-center mt-5">Manage Recipes</h1>
+    <h1 class = "text-center mt-5">Manage Your Own Recipes</h1>
     <p class = "text-center"><a class = "btn btn-primary" href="?add">Add new recipe</a></p>
     <form action="" method="get">
         <p class = "text-center">View Recipes satisfying the following criteria:</p>

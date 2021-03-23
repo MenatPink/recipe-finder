@@ -11,6 +11,7 @@
 </head>
 <body>
   <?php include_once 'admin/includes/helpers.inc.html.php';?>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbarsExampleDefault">
     <div class = "container-fluid">
       <a class = "navbar-brand" href="#">Your Recipes</a>
@@ -29,10 +30,10 @@
             <a class="nav-link" href='../reg/'>Register</a>
           </li>
         </ul>
-        <form class="d-flex">
+        <!-- <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      </form> -->
       </div>
     </div>
   </nav>
@@ -60,5 +61,10 @@
             </div>
         </form>
         <p><a href="..">Return to CMS home</a></p>
+        <?php
+  if(isset($_GET["passwordupdated"])){
+    echo "Your password has been updated";
+  }
+  ?>
 </body>
 </html>

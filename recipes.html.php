@@ -24,7 +24,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href='user/'>Login</a>
+            <a class="nav-link" href='user/'>Visit My Recipes</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href='reg/'>Register</a>
@@ -62,7 +62,7 @@
 </div>
 <div>
 <p class = "text-center">
-  <a href="./user/">Login to edit Your very own recipes</a>
+  <a href="./user/">Edit Your Own Recipes</a>
 </p>
 </div>
 <script src="https://assets.juicer.io/embed.js" type="text/javascript"></script>
