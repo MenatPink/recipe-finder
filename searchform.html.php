@@ -1,4 +1,4 @@
-<?php include_once '../recipes/admin/includes/helpers.inc.html.php';?>
+<?php include_once './admin/includes/helpers.inc.html.php';?>
     <form action="?search" method="get">
         <h2 class = "text-center top-buffer">Search for more recipes</h2>
         <div class="text-center top-buffer">

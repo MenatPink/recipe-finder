@@ -139,7 +139,7 @@ if(isset($_GET['action']) and $_GET['action'] == 'search')
         
 };
         
-        include '../includes/db.inc.php';
+        include './admin/includes/db.inc.php';
 
 //Build authors array
 try
